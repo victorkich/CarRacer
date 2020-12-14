@@ -1,0 +1,144 @@
+# depslib dependency file v1.0
+1589222603 source:/home/victorkich/Documents/CG Zero bala/gl_1_canvasGlut/src/gl_canvas2d.cpp
+	"gl_canvas2d.h"
+	<GL/glut.h>
+
+1603974868 /home/victorkich/Documents/CG Zero bala/gl_1_canvasGlut/src/gl_canvas2d.h
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+	"Vector2.h"
+
+1589217858 /home/victorkich/Documents/CG Zero bala/gl_1_canvasGlut/src/Vector2.h
+
+1603975055 source:/home/victorkich/Documents/CG Zero bala/gl_1_canvasGlut/src/main.cpp
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	"gl_canvas2d.h"
+	"Bola.h"
+	"Relogio.h"
+	"Botao.h"
+
+1589214882 /home/victorkich/Documents/CG Zero bala/gl_1_canvasGlut/src/Bola.h
+	"gl_canvas2d.h"
+
+1193164156 /home/victorkich/Documents/CG Zero bala/gl_1_canvasGlut/src/Relogio.h
+	"gl_canvas2d.h"
+
+1589214891 /home/victorkich/Documents/CG Zero bala/gl_1_canvasGlut/src/Botao.h
+	"gl_canvas2d.h"
+
+1589218349 source:/home/victorkich/Documents/CG Zero bala/gl_1_canvasGlut/src/Relogio.cpp
+	"Relogio.h"
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+
+1589222603 source:/home/victorkich/Documents/CG Zero bala/Canvas2D/src/gl_canvas2d.cpp
+	"gl_canvas2d.h"
+	<GL/glut.h>
+
+1606783037 /home/victorkich/Documents/CG Zero bala/Canvas2D/src/gl_canvas2d.h
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+	"Vector2.h"
+
+1606394643 /home/victorkich/Documents/CG Zero bala/Canvas2D/src/Vector2.h
+
+1606997460 source:/home/victorkich/Documents/CG Zero bala/Canvas2D/src/main.cpp
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	"gl_canvas2d.h"
+
+1589214882 /home/victorkich/Documents/CG Zero bala/Canvas2D/src/Bola.h
+	"gl_canvas2d.h"
+
+1193164156 /home/victorkich/Documents/CG Zero bala/Canvas2D/src/Relogio.h
+	"gl_canvas2d.h"
+
+1589214891 /home/victorkich/Documents/CG Zero bala/Canvas2D/src/Botao.h
+	"gl_canvas2d.h"
+
+1589218349 source:/home/victorkich/Documents/CG Zero bala/Canvas2D/src/Relogio.cpp
+	"Relogio.h"
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+
+1589222603 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/gl_canvas2d.cpp
+	"gl_canvas2d.h"
+	<GL/glut.h>
+
+1606783037 /home/victorkich/Documents/CG Zero bala/CarRacer/src/gl_canvas2d.h
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+	"Vector2.h"
+
+1607871186 /home/victorkich/Documents/CG Zero bala/CarRacer/src/Vector2.h
+
+1607909560 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/main.cpp
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	<vector>
+	"Point.h"
+	"gl_canvas2d.h"
+	"Vector2.h"
+	"Checkbox.h"
+
+1589218349 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/Relogio.cpp
+	"Relogio.h"
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+
+1193164156 /home/victorkich/Documents/CG Zero bala/CarRacer/src/Relogio.h
+	"gl_canvas2d.h"
+
+1607734960 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/Point.cpp
+	"gl_canvas2d.h"
+	"Point.h"
+
+1607867373 /home/victorkich/Documents/CG Zero bala/CarRacer/src/Point.h
+	"gl_canvas2d.h"
+	"Vector2.h"
+
+1607875155 /home/victorkich/Documents/CG Zero bala/CarRacer/src/Checkbox.h
+	"gl_canvas2d.h"
+
+1607887674 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/matrix.cpp
+	"matrix.h"
+
+1607887685 /home/victorkich/Documents/CG Zero bala/CarRacer/src/matrix.h
+	<vector>
+	"matrix.cpp"
+
+1607887674 /home/victorkich/Documents/CG Zero bala/CarRacer/src/matrix.cpp
+	"matrix.h"
+
+1607894185 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/Perceptron.cpp
+	<stdio.h>
+	<stdlib.h>
+	<vector>
+	<math.h>
+	"matrix.h"
+
