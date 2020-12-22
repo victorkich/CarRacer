@@ -10,7 +10,7 @@ class Point{
 public:
     Vector2 p;
     bool moving = false;
-    
+
     Point(Vector2 p_, int pos)
     {
         p = p_;

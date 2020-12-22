@@ -11,6 +11,7 @@
 
 #include "Vector2.h"
 
+#define PI_4 0.7853981634
 #define PI_2 6.28318530717
 #define PI   3.14159265359
 

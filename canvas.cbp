@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="Canvas C++" />
+		<Option title="CarRacer" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
@@ -48,6 +48,7 @@
 		<Unit filename="src/Point.h" />
 		<Unit filename="src/Checkbox.h" />
 		<Unit filename="src/Vector2.h" />
+		<Unit filename="src/Vector3.h" />
 		<Unit filename="src/Perceptron.cpp" />
 		<Unit filename="src/matrix.h" />
 		<Unit filename="src/matrix.cpp" />

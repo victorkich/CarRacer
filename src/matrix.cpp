@@ -3,7 +3,7 @@
 
 #include "matrix.h"
 
-// Parameter Constructor                                                                                                                                                      
+// Parameter Constructor
 template<typename T>
 QSMatrix<T>::QSMatrix(unsigned _rows, unsigned _cols, const T& _initial) {
   mat.resize(_rows);
@@ -14,7 +14,7 @@ QSMatrix<T>::QSMatrix(unsigned _rows, unsigned _cols, const T& _initial) {
   cols = _cols;
 }
 
-// Copy Constructor                                                                                                                                                           
+// Copy Constructor
 template<typename T>
 QSMatrix<T>::QSMatrix(const QSMatrix<T>& rhs) {
   mat = rhs.mat;
@@ -22,11 +22,11 @@ QSMatrix<T>::QSMatrix(const QSMatrix<T>& rhs) {
   cols = rhs.get_cols();
 }
 
-// (Virtual) Destructor                                                                                                                                                       
+// (Virtual) Destructor
 template<typename T>
 QSMatrix<T>::~QSMatrix() {}
 
-// Assignment Operator                                                                                                                                                        
+// Assignment Operator
 template<typename T>
 QSMatrix<T>& QSMatrix<T>::operator=(const QSMatrix<T>& rhs) {
   if (&rhs == this)
@@ -51,7 +51,7 @@ QSMatrix<T>& QSMatrix<T>::operator=(const QSMatrix<T>& rhs) {
   return *this;
 }
 
-// Addition of two matrices                                                                                                                                                   
+// Addition of two matrices
 template<typename T>
 QSMatrix<T> QSMatrix<T>::operator+(const QSMatrix<T>& rhs) {
   QSMatrix result(rows, cols, 0.0);
@@ -65,7 +65,7 @@ QSMatrix<T> QSMatrix<T>::operator+(const QSMatrix<T>& rhs) {
   return result;
 }
 
-// Cumulative addition of this matrix and another                                                                                                                             
+// Cumulative addition of this matrix and another
 template<typename T>
 QSMatrix<T>& QSMatrix<T>::operator+=(const QSMatrix<T>& rhs) {
   unsigned rows = rhs.get_rows();
@@ -80,7 +80,7 @@ QSMatrix<T>& QSMatrix<T>::operator+=(const QSMatrix<T>& rhs) {
   return *this;
 }
 
-// Subtraction of this matrix and another                                                                                                                                     
+// Subtraction of this matrix and another
 template<typename T>
 QSMatrix<T> QSMatrix<T>::operator-(const QSMatrix<T>& rhs) {
   unsigned rows = rhs.get_rows();
@@ -96,7 +96,7 @@ QSMatrix<T> QSMatrix<T>::operator-(const QSMatrix<T>& rhs) {
   return result;
 }
 
-// Cumulative subtraction of this matrix and another                                                                                                                          
+// Cumulative subtraction of this matrix and another
 template<typename T>
 QSMatrix<T>& QSMatrix<T>::operator-=(const QSMatrix<T>& rhs) {
   unsigned rows = rhs.get_rows();
@@ -111,7 +111,7 @@ QSMatrix<T>& QSMatrix<T>::operator-=(const QSMatrix<T>& rhs) {
   return *this;
 }
 
-// Left multiplication of this matrix and another                                                                                                                              
+// Left multiplication of this matrix and another
 template<typename T>
 QSMatrix<T> QSMatrix<T>::operator*(const QSMatrix<T>& rhs) {
   unsigned rows = rhs.get_rows();
@@ -129,7 +129,7 @@ QSMatrix<T> QSMatrix<T>::operator*(const QSMatrix<T>& rhs) {
   return result;
 }
 
-// Cumulative left multiplication of this matrix and another                                                                                                                  
+// Cumulative left multiplication of this matrix and another
 template<typename T>
 QSMatrix<T>& QSMatrix<T>::operator*=(const QSMatrix<T>& rhs) {
   QSMatrix result = (*this) * rhs;
@@ -137,7 +137,7 @@ QSMatrix<T>& QSMatrix<T>::operator*=(const QSMatrix<T>& rhs) {
   return *this;
 }
 
-// Calculate a transpose of this matrix                                                                                                                                       
+// Calculate a transpose of this matrix
 template<typename T>
 QSMatrix<T> QSMatrix<T>::transpose() {
   QSMatrix result(rows, cols, 0.0);
@@ -151,7 +151,7 @@ QSMatrix<T> QSMatrix<T>::transpose() {
   return result;
 }
 
-// Matrix/scalar addition                                                                                                                                                     
+// Matrix/scalar addition
 template<typename T>
 QSMatrix<T> QSMatrix<T>::operator+(const T& rhs) {
   QSMatrix result(rows, cols, 0.0);
@@ -165,7 +165,7 @@ QSMatrix<T> QSMatrix<T>::operator+(const T& rhs) {
   return result;
 }
 
-// Matrix/scalar subtraction                                                                                                                                                  
+// Matrix/scalar subtraction
 template<typename T>
 QSMatrix<T> QSMatrix<T>::operator-(const T& rhs) {
   QSMatrix result(rows, cols, 0.0);
@@ -179,7 +179,7 @@ QSMatrix<T> QSMatrix<T>::operator-(const T& rhs) {
   return result;
 }
 
-// Matrix/scalar multiplication                                                                                                                                               
+// Matrix/scalar multiplication
 template<typename T>
 QSMatrix<T> QSMatrix<T>::operator*(const T& rhs) {
   QSMatrix result(rows, cols, 0.0);
@@ -193,7 +193,7 @@ QSMatrix<T> QSMatrix<T>::operator*(const T& rhs) {
   return result;
 }
 
-// Matrix/scalar division                                                                                                                                                     
+// Matrix/scalar division
 template<typename T>
 QSMatrix<T> QSMatrix<T>::operator/(const T& rhs) {
   QSMatrix result(rows, cols, 0.0);
@@ -207,7 +207,7 @@ QSMatrix<T> QSMatrix<T>::operator/(const T& rhs) {
   return result;
 }
 
-// Multiply a matrix with a vector                                                                                                                                            
+// Multiply a matrix with a vector
 template<typename T>
 std::vector<T> QSMatrix<T>::operator*(const std::vector<T>& rhs) {
   std::vector<T> result(rhs.size(), 0.0);
@@ -221,7 +221,7 @@ std::vector<T> QSMatrix<T>::operator*(const std::vector<T>& rhs) {
   return result;
 }
 
-// Obtain a vector of the diagonal elements                                                                                                                                   
+// Obtain a vector of the diagonal elements
 template<typename T>
 std::vector<T> QSMatrix<T>::diag_vec() {
   std::vector<T> result(rows, 0.0);
@@ -233,25 +233,25 @@ std::vector<T> QSMatrix<T>::diag_vec() {
   return result;
 }
 
-// Access the individual elements                                                                                                                                             
+// Access the individual elements
 template<typename T>
 T& QSMatrix<T>::operator()(const unsigned& row, const unsigned& col) {
   return this->mat[row][col];
 }
 
-// Access the individual elements (const)                                                                                                                                     
+// Access the individual elements (const)
 template<typename T>
 const T& QSMatrix<T>::operator()(const unsigned& row, const unsigned& col) const {
   return this->mat[row][col];
 }
 
-// Get the number of rows of the matrix                                                                                                                                       
+// Get the number of rows of the matrix
 template<typename T>
 unsigned QSMatrix<T>::get_rows() const {
   return this->rows;
 }
 
-// Get the number of columns of the matrix                                                                                                                                    
+// Get the number of columns of the matrix
 template<typename T>
 unsigned QSMatrix<T>::get_cols() const {
   return this->cols;
