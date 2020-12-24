@@ -8,7 +8,7 @@
 class Car {
 private:
     float centre_width, centre_height, angle, width, height, quality;
-    float addx = 0.0, addy = 0.0, reward = 0.0;
+    float addx = 0., addy = 0., reward = 0., position = 0.;
     struct{ GLubyte red, green, blue; } pixel;
     Vector2 aux_center_car, center_car;
     std::vector<Point> points;
@@ -19,7 +19,7 @@ public:
         height = h;
         centre_width = w / 2;
         centre_height = h / 2;
-        quality = 0.1 / filter_quality;
+        quality = float(0.1) / filter_quality;
         points = g_points;
         aux_center_car.set(0,1);
         aux_center_car.normalize();
@@ -59,16 +59,19 @@ public:
         return points[0].p.y + addy;
     }
 
+    float get_position(){
+        return position;
+    }
+
     std::vector<float> Render(bool show_lasers){
         float car_x = get_carx(), car_y = get_cary();
         CV::translate(car_x - centre_width, car_y - centre_height);
         glReadPixels(car_x, car_y, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, &pixel);
-        CV::color(0.5, 0.5, 0);
-
+        position = (float(pixel.red)/255) * 100;
+        CV::color(position/100, float(pixel.blue)/255, 1);
         float old_x, old_y, new_x, new_y;
         for(float y=0; y<height; y+=0.6)
-            for(float x=0; x<width; x+=0.6)
-            {
+            for(float x=0; x<width; x+=0.6){
                 old_x = x - centre_width;
                 old_y = y - centre_height;
                 new_y = -old_x*sin(angle) + old_y*cos(angle);
@@ -77,8 +80,7 @@ public:
                 new_x = centre_width - new_x;
                 CV::point(new_x, new_y);
             }
-        if(!pixel.red && !pixel.green && !pixel.blue)
-        {
+        if(!pixel.red && !pixel.green && !pixel.blue){
             addx = 0;
             addy = 0;
             center_car = center_car.Bezier(0.01, points[0].p, points[1].p, points[2].p);
@@ -89,22 +91,18 @@ public:
         CV::translate(car_x, car_y);
         std::vector<float> obs;
         float add_angle = 0.0, scale, distance;
-        for(int i=0; i<8; i++)
-        {
+        for(int i=0; i<8; i++){
             scale = 0.0;
             add_angle += PI_4;
             new_y = 100 * cos(angle+add_angle);
             new_x = 100 * sin(angle+add_angle);
-            while(true)
-            {
+            while(true){
                 scale += quality;
                 glReadPixels(car_x+scale*new_x, car_y+scale*new_y, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, &pixel);
-                if (!pixel.red && !pixel.green && !pixel.blue)
-                {
-                    distance = sqrt(pow(scale*new_x, 2) + pow(scale*new_y, 2)) - 20;
+                if (!pixel.red && !pixel.green && !pixel.blue){
+                    distance = sqrt(float(pow(scale*new_x, 2) + pow(scale*new_y, 2))) - 20;
                     obs.push_back(distance);
-                    if(show_lasers)
-                    {
+                    if(show_lasers){
                         if(distance > 20)
                             CV::color(0.2,1,0.2);
                         else

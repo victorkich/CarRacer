@@ -91,18 +91,17 @@
 	<GL/freeglut_ext.h>
 	"Vector2.h"
 
-1607974599 /home/victorkich/Documents/CG Zero bala/CarRacer/src/Vector2.h
+1608664375 /home/victorkich/Documents/CG Zero bala/CarRacer/src/Vector2.h
 	<math.h>
+	<stdio.h>
 
-1608663780 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/main.cpp
+1608751253 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/main.cpp
 	<GL/glut.h>
 	<GL/freeglut_ext.h>
 	<math.h>
 	<stdio.h>
-	<stdlib.h>
 	<vector>
 	<ctime>
-	<iostream>
 	"Point.h"
 	"gl_canvas2d.h"
 	"Vector2.h"
@@ -111,6 +110,7 @@
 	"Car.cpp"
 	"Road.cpp"
 	"Vector3.h"
+	"Fps.h"
 
 1589218349 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/Relogio.cpp
 	"Relogio.h"
@@ -222,7 +222,7 @@
 	"Point.h"
 	"matrix.h"
 
-1607989616 /home/victorkich/Documents/CG Zero bala/CarRacer/src/Car.cpp
+1608751731 /home/victorkich/Documents/CG Zero bala/CarRacer/src/Car.cpp
 	<GL/glut.h>
 	<vector>
 	"Vector2.h"
@@ -230,7 +230,7 @@
 	"Point.h"
 	"matrix.h"
 
-1607989519 /home/victorkich/Documents/CG Zero bala/CarRacer/src/Road.cpp
+1608673842 /home/victorkich/Documents/CG Zero bala/CarRacer/src/Road.cpp
 	<GL/glut.h>
 	<vector>
 	"Vector2.h"
@@ -239,4 +239,23 @@
 	"matrix.h"
 
 1608033867 /home/victorkich/Documents/CG Zero bala/CarRacer/src/Vector3.h
+
+1608751731 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/Car.cpp
+	<GL/glut.h>
+	<vector>
+	"Vector2.h"
+	"gl_canvas2d.h"
+	"Point.h"
+	"matrix.h"
+
+1608673842 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/Road.cpp
+	<GL/glut.h>
+	<vector>
+	"Vector2.h"
+	"gl_canvas2d.h"
+	"Point.h"
+	"matrix.h"
+
+1608750216 /home/victorkich/Documents/CG Zero bala/CarRacer/src/Fps.h
+	<ctime>
 

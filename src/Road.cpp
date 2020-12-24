@@ -25,28 +25,27 @@ public:
     void Render(float mouseX, float mouseY){
         if(n_points > 2){
             Vector2 vetor;
-            for(int x=2; x<n_points; x+=2)
-            {
-                CV::color(1,1,1);
+            for(int x=2; x<n_points; x+=2){
                 CV::translate(points[x-2].p.x, points[x-2].p.y);
-                for(float t=0; t<1; t+=0.005)
-                {
+                float act_curve = (x/2) / float(n_points);
+                float last_curve = (x-2) / float(n_points);
+
+                for(float t=0; t<1; t+=0.005){
                     vetor = vetor.Bezier(t, points[x-2].p, points[x-1].p, points[x].p);
-                    CV::point(vetor.x, vetor.y);
+                    CV::color(act_curve*t+last_curve,0.5,0.5);
                     CV::circleFill(vetor.x, vetor.y, len, quality);
                 }
             }
             if (n_points%2 == 0){
-                CV::color(1,1,1);
                 CV::translate(points[n_points-2].p.x, points[n_points-2].p.y);
-                for(float t=0; t<1; t+=0.005)
-                {
+                for(float t=0; t<1; t+=0.005){
                     vetor.set(mouseX, mouseY);
                     vetor = vetor.Bezier(t, points[n_points-2].p, points[n_points-1].p, vetor);
-                    CV::point(vetor.x, vetor.y);
                     CV::circleFill(vetor.x, vetor.y, len, quality);
                 }
             }
+            //vetor = vetor.Bezier(t, points[x].p, points[x+1].p, points[x+2].p);
+            //CV::circleFill(vetor.x, vetor.y, len, quality);
         }
     }
 };
