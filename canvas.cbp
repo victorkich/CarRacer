@@ -48,11 +48,12 @@
 		<Unit filename="src/Point.h" />
 		<Unit filename="src/Checkbox.h" />
 		<Unit filename="src/Vector2.h" />
-		<Unit filename="src/Vector3.h" />
 		<Unit filename="src/Car.cpp" />
 		<Unit filename="src/Road.cpp" />
 		<Unit filename="src/Score.h" />
 		<Unit filename="src/Fps.h" />
+		<Unit filename="src/Gold.h" />
+		<Unit filename="src/Bonus.cpp" />
 		<Unit filename="src/Perceptron.cpp" />
 		<Unit filename="src/matrix.h" />
 		<Unit filename="src/matrix.cpp" />

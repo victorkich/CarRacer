@@ -1,5 +1,7 @@
 #include <GL/glut.h>
+#include <stdio.h>
 #include <vector>
+
 #include "Vector2.h"
 #include "gl_canvas2d.h"
 #include "Point.h"
@@ -7,45 +9,37 @@
 
 class Road {
 private:
-    std::vector<Point> points;
+    std::vector <Point> points;
     int n_points = 0, quality;
     float len;
 
 public:
-    Road(float length, int curve_quality){
-        quality = round((length/10) * curve_quality);
+    Road(float length, int curve_quality) {
+        quality = round((length / 10) * curve_quality);
         len = length;
     }
 
-    void updatePoints(std::vector<Point> g_points, int g_npoints) {
+    void updatePoints(std::vector <Point> g_points, int g_npoints) {
         points = g_points;
         n_points = g_npoints;
     }
 
-    void Render(float mouseX, float mouseY){
-        if(n_points > 2){
-            Vector2 vetor;
-            for(int x=2; x<n_points; x+=2){
-                CV::translate(points[x-2].p.x, points[x-2].p.y);
-                float act_curve = (x/2) / float(n_points);
-                float last_curve = (x-2) / float(n_points);
+    void Render(float mouseX, float mouseY, bool finish) {
+        if (n_points) {
+            int number = n_points;
+            if (not finish) {
+                Point mouse(mouseX, mouseY, 1);
+                points.push_back(mouse);
+            } else
+                number = n_points - 1;
+            for (float t = 0; t < 0.05; t += 0.0001) {
+                for (int i = number; i; i--)
+                    for (int k = 0; k < i; k++)
+                        points[k].p = points[k].p + (points[k + 1].p - points[k].p) * t;
 
-                for(float t=0; t<1; t+=0.005){
-                    vetor = vetor.Bezier(t, points[x-2].p, points[x-1].p, points[x].p);
-                    CV::color(act_curve*t+last_curve,0.5,0.5);
-                    CV::circleFill(vetor.x, vetor.y, len, quality);
-                }
+                CV::color(t * 50, 1, 1);
+                CV::circleFill(points[0].p.x, points[0].p.y, len, quality);
             }
-            if (n_points%2 == 0){
-                CV::translate(points[n_points-2].p.x, points[n_points-2].p.y);
-                for(float t=0; t<1; t+=0.005){
-                    vetor.set(mouseX, mouseY);
-                    vetor = vetor.Bezier(t, points[n_points-2].p, points[n_points-1].p, vetor);
-                    CV::circleFill(vetor.x, vetor.y, len, quality);
-                }
-            }
-            //vetor = vetor.Bezier(t, points[x].p, points[x+1].p, points[x+2].p);
-            //CV::circleFill(vetor.x, vetor.y, len, quality);
         }
     }
 };

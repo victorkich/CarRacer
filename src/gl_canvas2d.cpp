@@ -314,9 +314,9 @@ void CV::init(int *w, int *h, const char *title)
    scrWidth = w;
 
    //habilita MSAA
-   glutSetOption(GLUT_MULTISAMPLE, 8);
-   glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB | GLUT_MULTISAMPLE);
-   //glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB);
+   //glutSetOption(GLUT_MULTISAMPLE, 8);
+   //glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB | GLUT_MULTISAMPLE);
+   glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB);
 
    glutInitWindowSize (*w, *h);
    glutInitWindowPosition (50, 50);
