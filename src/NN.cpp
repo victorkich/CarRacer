@@ -12,6 +12,7 @@
 class NN {
 private:
     Perceptron *p;
+    float len;
 
 public:
     NN(float eta){
@@ -40,7 +41,8 @@ public:
         return i_min;
     }
 
-    std::vector<bool> evaluate(QSMatrix<float> obs) {
+    std::vector<bool> evaluate(QSMatrix<float> obs, float _len) {
+        len = _len;
         QSMatrix<float> act_prob(4, 1, 0);
         act_prob = p->forward(obs);
         int max = argmax(act_prob);
@@ -60,7 +62,7 @@ public:
         QSMatrix<float> result(4, 1, 0);
         int min = argmin(obs);
 
-        if (obs(min, 0) > 20) {
+        if (obs(min, 0) > (len/2)) {
             result.modify(0, 0, 1);
         }else{
             switch (min) {

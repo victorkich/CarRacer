@@ -27,7 +27,8 @@ Road *road = nullptr;
 Fps *fps = nullptr;
 Score *score = nullptr, *score_ia = nullptr;
 Bonus *bonus = nullptr;
-Botao *h_transpose = nullptr, *v_transpose = nullptr, *more_scale = nullptr, *less_scale = nullptr, *spin_left = nullptr, *spin_right = nullptr;
+Botao *h_transpose = nullptr, *v_transpose = nullptr, *more_scale = nullptr, *less_scale = nullptr;
+Botao *spin_left = nullptr, *spin_right = nullptr, *more_thickness = nullptr, *less_thickness = nullptr;
 NN *nn = nullptr;
 
 std::vector <Point> g_points;
@@ -62,7 +63,10 @@ void render() {
     less_scale->Render();
     spin_left->Render();
     spin_right->Render();
+    more_thickness->Render();
+    less_thickness->Render();
     // Road render
+    CV::translate(0, 0);
     road->updatePoints(g_points, g_npoints);
     road->Render(float(mouseX), float(mouseY), g_finish);
 
@@ -84,7 +88,7 @@ void render() {
         ia_obs = car_ia->Render(cb_ls->getStatus());
 
         if (cb_train->getStatus()) {
-            g_actions_ia = nn->evaluate(ia_obs);
+            g_actions_ia = nn->evaluate(ia_obs, road->get_len());
             car_ia->step(g_actions_ia, fps->get_fps());
         }
 
@@ -167,10 +171,22 @@ void mouse(int button, int state, int wheel, int direction, int x, int y) {
                 more_scale->updateStatus();
             else if (less_scale->Colidiu(x, y))
                 less_scale->updateStatus();
-            else if (spin_left->Colidiu(x, y))
+            else if (spin_left->Colidiu(x, y)){
                 spin_left->updateStatus();
-            else if (spin_right->Colidiu(x, y))
+                road->add_angle(-10);
+            }
+            else if (more_thickness->Colidiu(x, y)){
+                more_thickness->updateStatus();
+                road->add_len(1);
+            }
+            else if (less_thickness->Colidiu(x, y)){
+                less_thickness->updateStatus();
+                road->add_len(-1);
+            }
+            else if (spin_right->Colidiu(x, y)){
                 spin_right->updateStatus();
+                road->add_angle(10);
+            }
             else if (bonus->Colidiu(x, y)) {
                 mov_mouseX = mouseX;
                 mov_mouseY = mouseY;
@@ -206,6 +222,14 @@ void mouse(int button, int state, int wheel, int direction, int x, int y) {
                 more_scale->updateStatus();
             else if (less_scale->Colidiu(x, y))
                 less_scale->updateStatus();
+            else if (spin_left->Colidiu(x, y))
+                spin_left->updateStatus();
+            else if (spin_right->Colidiu(x, y))
+                spin_right->updateStatus();
+            else if (more_thickness->Colidiu(x, y))
+                more_thickness->updateStatus();
+            else if (less_thickness->Colidiu(x, y))
+                less_thickness->updateStatus();
 
             bonus->stopMoving(float(x - mov_mouseX), float(y - mov_mouseY));
 
@@ -242,10 +266,13 @@ int main() {
 
     h_transpose = new Botao(1050, 350, 150, 40, " H Transpose");
     v_transpose = new Botao(1050, 300, 150, 40, " V Transpose");
-    more_scale = new Botao(1050, 250, 70, 40, "Size +");
-    less_scale = new Botao(1130, 250, 70, 40, "Size -");
-    spin_left = new Botao(1050, 200, 70, 40, "Spin -");
-    spin_right = new Botao(1130, 200, 70, 40, "Spin +");
+    less_scale = new Botao(1050, 250, 70, 40, "-Scale");
+    more_scale = new Botao(1130, 250, 70, 40, "+Scale");
+    spin_left = new Botao(1050, 200, 70, 40, "-Spin");
+    spin_right = new Botao(1130, 200, 70, 40, "+Spin");
+    less_thickness = new Botao(1050, 150, 70, 40, "-Thick");
+    more_thickness = new Botao(1130, 150, 70, 40, "+Thick");
+
 
     nn = new NN(0.0001);
 

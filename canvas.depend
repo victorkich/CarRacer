@@ -95,7 +95,7 @@
 	<math.h>
 	<stdio.h>
 
-1609622381 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/main.cpp
+1609712071 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/main.cpp
 	<GL/glut.h>
 	<GL/freeglut_ext.h>
 	<math.h>
@@ -235,10 +235,11 @@
 	"Point.h"
 	"matrix.h"
 
-1609365589 /home/victorkich/Documents/CG Zero bala/CarRacer/src/Road.cpp
+1609711930 /home/victorkich/Documents/CG Zero bala/CarRacer/src/Road.cpp
 	<GL/glut.h>
 	<stdio.h>
 	<vector>
+	<math.h>
 	"Vector2.h"
 	"gl_canvas2d.h"
 	"Point.h"
@@ -256,10 +257,11 @@
 	"Point.h"
 	"matrix.h"
 
-1609365589 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/Road.cpp
+1609711930 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/Road.cpp
 	<GL/glut.h>
 	<stdio.h>
 	<vector>
+	<math.h>
 	"Vector2.h"
 	"gl_canvas2d.h"
 	"Point.h"
@@ -301,7 +303,15 @@
 	<math.h>
 	"matrix.h"
 
-1609622649 /home/victorkich/Documents/CG Zero bala/CarRacer/src/NN.cpp
+1609712040 /home/victorkich/Documents/CG Zero bala/CarRacer/src/NN.cpp
+	<stdio.h>
+	<stdlib.h>
+	<vector>
+	<math.h>
+	"matrix.h"
+	"Perceptron.cpp"
+
+1609712040 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/NN.cpp
 	<stdio.h>
 	<stdlib.h>
 	<vector>
