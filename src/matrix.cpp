@@ -114,13 +114,13 @@ QSMatrix<T> &QSMatrix<T>::operator-=(const QSMatrix<T> &rhs) {
 // Left multiplication of this matrix and another
 template<typename T>
 QSMatrix<T> QSMatrix<T>::operator*(const QSMatrix<T> &rhs) {
-    unsigned rows = rhs.get_rows();
-    unsigned cols = rhs.get_cols();
+    unsigned rows = this->get_rows(); // 20
+    unsigned cols = rhs.get_cols(); // 1
     QSMatrix result(rows, cols, 0.0);
 
     for (unsigned i = 0; i < rows; i++) {
         for (unsigned j = 0; j < cols; j++) {
-            for (unsigned k = 0; k < rows; k++) {
+            for (unsigned k = 0; k < this->get_cols(); k++) {
                 result(i, j) += this->mat[i][k] * rhs(k, j);
             }
         }
@@ -140,11 +140,11 @@ QSMatrix<T> &QSMatrix<T>::operator*=(const QSMatrix<T> &rhs) {
 // Calculate a transpose of this matrix
 template<typename T>
 QSMatrix<T> QSMatrix<T>::transpose() {
-    QSMatrix result(rows, cols, 0.0);
+    QSMatrix result(this->get_cols(), this->get_rows(), 0.0);
 
-    for (unsigned i = 0; i < rows; i++) {
-        for (unsigned j = 0; j < cols; j++) {
-            result(i, j) = this->mat[j][i];
+    for (unsigned i = 0; i < this->get_rows(); i++) {
+        for (unsigned j = 0; j < this->get_cols(); j++) {
+            result(j, i) = this->mat[i][j];
         }
     }
 
@@ -243,6 +243,12 @@ T &QSMatrix<T>::operator()(const unsigned &row, const unsigned &col) {
 template<typename T>
 const T &QSMatrix<T>::operator()(const unsigned &row, const unsigned &col) const {
     return this->mat[row][col];
+}
+
+// Modify a individual elements (const)
+template<typename T>
+void QSMatrix<T>::modify(unsigned row, unsigned col, T rhs) {
+    mat[row][col] = rhs;
 }
 
 // Get the number of rows of the matrix

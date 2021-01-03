@@ -5,8 +5,9 @@
 #include "Vector2.h"
 
 class Point {
-    float add_x = 0, add_y = 0;
-    bool first = true;
+private:
+    bool first = false;
+
 public:
     Vector2 p;
     bool moving = false;
@@ -15,28 +16,24 @@ public:
 
     Point(Vector2 p_, int pos) {
         p = p_;
-        if (pos)
-            first = false;
+        if (not pos)
+            first = true;
     }
 
     Point(float x, float y, int pos) {
-        Vector2 aux(x, y);
-        p = aux;
-        if (pos)
-            first = false;
+        p.set(x, y);
+        if (not pos)
+            first = true;
     }
 
     void set(float x, float y) {
-        Vector2 aux(x, y);
-        p = aux;
+        p.set(x, y);
     }
 
     void Update(float x, float y) {
         if (moving) {
             p.x += x;
             p.y += y;
-            add_x = 0;
-            add_y = 0;
         }
     }
 
@@ -46,11 +43,9 @@ public:
         else
             CV::color(0, 1, 0);
 
-        if (moving) {
-            add_x = x;
-            add_y = y;
+        if (moving)
             CV::circleFill(p.x + x, p.y + y, 10, 20);
-        } else
+        else
             CV::circleFill(p.x, p.y, 10, 20);
     }
 

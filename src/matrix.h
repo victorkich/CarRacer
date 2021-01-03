@@ -54,6 +54,8 @@ public:
 
     const T &operator()(const unsigned &row, const unsigned &col) const;
 
+    void modify(unsigned row, unsigned col, T rhs);
+
     // Access the row and column sizes
     unsigned get_rows() const;
 

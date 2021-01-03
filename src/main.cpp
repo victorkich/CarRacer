@@ -17,6 +17,7 @@
 #include "Score.h"
 #include "Bonus.cpp"
 #include "Botao.h"
+#include "NN.cpp"
 
 
 //variaveis globais para selecao do que sera exibido na canvas.
@@ -26,40 +27,49 @@ Road *road = nullptr;
 Fps *fps = nullptr;
 Score *score = nullptr, *score_ia = nullptr;
 Bonus *bonus = nullptr;
-Botao *h_transpose = nullptr, *v_transpose = nullptr, *more_scale = nullptr, *less_scale = nullptr;
+Botao *h_transpose = nullptr, *v_transpose = nullptr, *more_scale = nullptr, *less_scale = nullptr, *spin_left = nullptr, *spin_right = nullptr;
+NN *nn = nullptr;
 
 std::vector <Point> g_points;
 std::vector<bool> g_actions(4, false), g_actions_ia(4, false);
-std::vector<float> g_obs, ia_obs;
+QSMatrix<float> g_obs(1, 8, 0), ia_obs(1, 8, 0);
 std::vector<bool> progress;
 
 int g_npoints = 0;
 bool g_finish = false, first_car_angle = true, point_local = true;
 int screenWidth = 1280, screenHeight = 720; //largura e altura inicial da tela . Alteram com o redimensionamento de tela.
-int mouseX, mouseY, mov_mouseX, mov_mouseY; //variaveis globais do mouse para poder exibir dentro da render().
+int mouseX, mouseY, mov_mouseX, mov_mouseY, dif_x, dif_y; //variaveis globais do mouse para poder exibir dentro da render().
 clock_t timer;
+float reward = 0, reward_ia = 0;
+int lap = 0, lap_ia = 0;
 
 
 void render() {
+    // Set timer to calculate the FPS
     timer = clock();
     glClearColor(0, 0, 0, 0);
-
+    // Calculate moved distance
+    dif_x = mouseX - mov_mouseX;
+    dif_y = mouseY - mov_mouseY;
+    // Checkbox renders
     cb_cp->Render();
     cb_ls->Render();
     cb_train->Render();
-
+    // Button renders
     h_transpose->Render();
     v_transpose->Render();
     more_scale->Render();
     less_scale->Render();
-
+    spin_left->Render();
+    spin_right->Render();
+    // Road render
     road->updatePoints(g_points, g_npoints);
     road->Render(float(mouseX), float(mouseY), g_finish);
 
     CV::translate(0, 0);
     if (g_npoints && cb_cp->getStatus())
         for (Point p : g_points)
-            p.Render(float(mouseX - mov_mouseX), float(mouseY - mov_mouseY));
+            p.Render(dif_x, dif_y);
 
     if (g_finish) {
         if (first_car_angle) {
@@ -70,9 +80,27 @@ void render() {
         car_ia->updatePoints(g_points);
         car->updatePoints(g_points);
         car->step(g_actions, fps->get_fps());
-        car_ia->step(g_actions_ia, fps->get_fps());
-        ia_obs = car_ia->Render(cb_ls->getStatus());
         g_obs = car->Render(cb_ls->getStatus());
+        ia_obs = car_ia->Render(cb_ls->getStatus());
+
+        if (cb_train->getStatus()) {
+            g_actions_ia = nn->evaluate(ia_obs);
+            car_ia->step(g_actions_ia, fps->get_fps());
+        }
+
+        reward = bonus->getReward(car->get_carx(), car->get_cary(), true);
+        car->addReward(reward);
+        reward_ia = bonus->getReward(car_ia->get_carx(), car_ia->get_cary(), false);
+        car_ia->addReward(reward_ia);
+
+        if (lap < car->get_lap()){
+            bonus->reset(true);
+            lap = car->get_lap();
+        }
+        if (lap_ia < car_ia->get_lap()){
+            bonus->reset(false);
+            lap_ia = car_ia->get_lap();
+        }
 
         CV::translate(0, 0);
         score->Render(car->get_lap(), car->get_score(), car->get_speed());
@@ -82,7 +110,9 @@ void render() {
         //       progress[5] ? "true" : "false", progress[6] ? "true" : "false", progress[7] ?"true" : "false", progress[8] ? "true" : "false", progress[9] ? "true" : "false");
     }
 
-    bonus->Render(float(mouseX - mov_mouseX), float(mouseY - mov_mouseY));
+    // Bonus panel render
+    bonus->Render(dif_x, dif_y);
+    // FPS render
     fps->Render(timer);
 }
 
@@ -137,25 +167,32 @@ void mouse(int button, int state, int wheel, int direction, int x, int y) {
                 more_scale->updateStatus();
             else if (less_scale->Colidiu(x, y))
                 less_scale->updateStatus();
-            else {
+            else if (spin_left->Colidiu(x, y))
+                spin_left->updateStatus();
+            else if (spin_right->Colidiu(x, y))
+                spin_right->updateStatus();
+            else if (bonus->Colidiu(x, y)) {
+                mov_mouseX = mouseX;
+                mov_mouseY = mouseY;
+            } else {
                 for (int p = g_npoints - 1; p >= 0; p--) {
-                    if (g_points[0].Colidiu(mouseX, mouseY) && g_points[g_npoints - 1].Colidiu(mouseX, mouseY)) {
+                    if (g_points[0].Colidiu(x, y) && g_points[g_npoints - 1].Colidiu(x, y)) {
                         point_local = false;
-                        mov_mouseX = mouseX;
-                        mov_mouseY = mouseY;
+                        mov_mouseX = x;
+                        mov_mouseY = y;
                         g_points[0].moving = true;
                         g_points[g_npoints - 1].moving = true;
-                    } else if (g_points[p].Colidiu(mouseX, mouseY)) {
+                        break;
+                    } else if (g_points[p].Colidiu(x, y)) {
                         point_local = false;
-                        mov_mouseX = mouseX;
-                        mov_mouseY = mouseY;
+                        mov_mouseX = x;
+                        mov_mouseY = y;
                         g_points[p].moving = true;
                         break;
                     }
                 }
                 if (point_local && !g_finish) {
-                    Vector2 new_xy((float) mouseX, (float) mouseY);
-                    Point new_point(new_xy, g_npoints);
+                    Point new_point(float(x), float(y), g_npoints);
                     g_points.push_back(new_point);
                     g_npoints++;
                 }
@@ -169,8 +206,11 @@ void mouse(int button, int state, int wheel, int direction, int x, int y) {
                 more_scale->updateStatus();
             else if (less_scale->Colidiu(x, y))
                 less_scale->updateStatus();
+
+            bonus->stopMoving(float(x - mov_mouseX), float(y - mov_mouseY));
+
             for (int p = g_npoints - 1; p >= 0; p--) {
-                g_points[p].Update(float(mouseX - mov_mouseX), float(mouseY - mov_mouseY));
+                g_points[p].Update(float(x - mov_mouseX), float(y - mov_mouseY));
                 g_points[p].moving = false;
             }
             point_local = true;
@@ -178,7 +218,7 @@ void mouse(int button, int state, int wheel, int direction, int x, int y) {
     }
     if (button == 2) {
         if (state == 0) {
-            if (g_points[0].Colidiu(mouseX, mouseY) && !g_finish) {
+            if (g_points[0].Colidiu(x, y) && !g_finish) {
                 Point new_point(g_points[0].p, 0);
                 g_points.push_back(new_point);
                 g_npoints++;
@@ -204,6 +244,10 @@ int main() {
     v_transpose = new Botao(1050, 300, 150, 40, " V Transpose");
     more_scale = new Botao(1050, 250, 70, 40, "Size +");
     less_scale = new Botao(1130, 250, 70, 40, "Size -");
+    spin_left = new Botao(1050, 200, 70, 40, "Spin -");
+    spin_right = new Botao(1130, 200, 70, 40, "Spin +");
+
+    nn = new NN(0.0001);
 
     CV::run();
 }

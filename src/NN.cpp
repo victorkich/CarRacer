@@ -1,5 +1,5 @@
-#ifndef __ES_CPP
-#define __ES_CPP
+#ifndef __NN_CPP
+#define __NN_CPP
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -8,36 +8,36 @@
 #include "matrix.h"
 #include "Perceptron.cpp"
 
-int argmax(QSMatrix<float> x) {
-    int i_max = 0;
-    unsigned rows = x.get_rows();
-    for (unsigned i = 0; i < rows; i++) {
-        if (x(i, 0) > x(i_max, 0)) {
-            i_max = i;
-        }
-    }
-    return i_max;
-}
 
-int argmin(QSMatrix<float> x) {
-    int i_min = 0;
-    int rows = x.get_rows()-2;
-    for (int i = 0; i < rows; i++) {
-        if (x(i, 0) < x(i_min, 0)) {
-            i_min = i;
-        }
-    }
-    return i_min;
-}
-
-class ES {
+class NN {
 private:
-    float noise_std = 0.01, lr = 0.001;
     Perceptron *p;
 
 public:
-    ES(){
-        p = new Perceptron();
+    NN(float eta){
+        p = new Perceptron(eta);
+    }
+
+    int argmax(QSMatrix<float> x) {
+        int i_max = 0;
+        unsigned rows = x.get_rows();
+        for (unsigned i = 0; i < rows; i++) {
+            if (x(i, 0) > x(i_max, 0)) {
+                i_max = i;
+            }
+        }
+        return i_max;
+    }
+
+    int argmin(QSMatrix<float> x) {
+        int i_min = 0;
+        int rows = x.get_rows()-2;
+        for (int i = 0; i < rows; i++) {
+            if (x(i, 0) < x(i_min, 0)) {
+                i_min = i;
+            }
+        }
+        return i_min;
     }
 
     std::vector<bool> evaluate(QSMatrix<float> obs) {

@@ -51,6 +51,7 @@
 		<Unit filename="src/Car.cpp" />
 		<Unit filename="src/Road.cpp" />
 		<Unit filename="src/Score.h" />
+		<Unit filename="src/NN.cpp" />
 		<Unit filename="src/Fps.h" />
 		<Unit filename="src/Gold.h" />
 		<Unit filename="src/Bonus.cpp" />
