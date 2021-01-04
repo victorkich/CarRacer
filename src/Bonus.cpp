@@ -23,14 +23,14 @@ public:
     float getReward(float cx, float cy, bool type) {
         float reward = 0;
         if (type) {
-            for (int i = 0; i < player1.size(); i++)
+            for (unsigned i = 0; i < player1.size(); i++)
                 if (player1[i].x >= cx - 10 && player1[i].x <= cx + 10 && player1[i].y >= cy - 10 &&
                     player1[i].y <= cy + 10 && player1[i].visible) {
                     player1[i].visible = false;
                     reward++;
                 }
         } else
-            for (int i = 0; i < player2.size(); i++)
+            for (unsigned i = 0; i < player2.size(); i++)
                 if (player2[i].x >= cx - 10 && player2[i].x <= cx + 10 && player2[i].y >= cy - 10 &&
                     player2[i].y <= cy + 10 && player2[i].visible) {
                     player2[i].visible = false;
@@ -41,17 +41,17 @@ public:
     }
 
     void reset(bool type) {
-        if (type){
-            for (int i = 0; i < player1.size(); i++)
+        if (type) {
+            for (unsigned i = 0; i < player1.size(); i++)
                 player1[i].visible = true;
-        }else
-            for (int i = 0; i < player2.size(); i++)
+        } else
+            for (unsigned i = 0; i < player2.size(); i++)
                 player2[i].visible = true;
     }
 
     void Render(float mouseX, float mouseY) {
         bool new_gold = true;
-        for (int i = 0; i < player1.size(); i++)
+        for (unsigned i = 0; i < player1.size(); i++)
             if (player1[i].x >= x && player1[i].x <= x + largura && player1[i].y >= y && player1[i].y <= y + altura)
                 new_gold = false;
 
@@ -61,7 +61,7 @@ public:
         } else
             new_gold = true;
 
-        for (int i = 0; i < player2.size(); i++)
+        for (unsigned i = 0; i < player2.size(); i++)
             if (player2[i].x >= x && player2[i].x <= x + largura && player1[i].y >= y && player2[i].y <= y + altura)
                 new_gold = false;
 
@@ -84,23 +84,23 @@ public:
     }
 
     void stopMoving(float x, float y) {
-        for (int i = 0; i < player1.size(); i++) {
+        for (unsigned i = 0; i < player1.size(); i++) {
             player1[i].Update(x, y);
             player1[i].moving = false;
         }
-        for (int i = 0; i < player2.size(); i++) {
+        for (unsigned i = 0; i < player2.size(); i++) {
             player2[i].Update(x, y);
             player2[i].moving = false;
         }
     }
 
     bool Colidiu(int mx, int my) {
-        for (int i = 0; i < player1.size(); i++)
+        for (unsigned i = 0; i < player1.size(); i++)
             if (player1[i].Colidiu(mx, my)) {
                 player1[i].moving = true;
                 return true;
             }
-        for (int i = 0; i < player2.size(); i++)
+        for (unsigned i = 0; i < player2.size(); i++)
             if (player2[i].Colidiu(mx, my)) {
                 player2[i].moving = true;
                 return true;

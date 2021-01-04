@@ -95,7 +95,7 @@
 	<math.h>
 	<stdio.h>
 
-1609768024 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/main.cpp
+1609778831 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/main.cpp
 	<GL/glut.h>
 	<GL/freeglut_ext.h>
 	<math.h>
@@ -114,6 +114,7 @@
 	"Bonus.cpp"
 	"Botao.h"
 	"NN.cpp"
+	"Gun.cpp"
 
 1589218349 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/Relogio.cpp
 	"Relogio.h"
@@ -225,7 +226,7 @@
 	"Point.h"
 	"matrix.h"
 
-1609713591 /home/victorkich/Documents/CG Zero bala/CarRacer/src/Car.cpp
+1609778338 /home/victorkich/Documents/CG Zero bala/CarRacer/src/Car.cpp
 	<GL/glut.h>
 	<vector>
 	<stdio.h>
@@ -235,7 +236,7 @@
 	"Point.h"
 	"matrix.h"
 
-1609769676 /home/victorkich/Documents/CG Zero bala/CarRacer/src/Road.cpp
+1609779481 /home/victorkich/Documents/CG Zero bala/CarRacer/src/Road.cpp
 	<GL/glut.h>
 	<stdio.h>
 	<vector>
@@ -247,7 +248,7 @@
 
 1608033867 /home/victorkich/Documents/CG Zero bala/CarRacer/src/Vector3.h
 
-1609713591 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/Car.cpp
+1609778338 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/Car.cpp
 	<GL/glut.h>
 	<vector>
 	<stdio.h>
@@ -257,7 +258,7 @@
 	"Point.h"
 	"matrix.h"
 
-1609769370 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/Road.cpp
+1609779237 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/Road.cpp
 	<GL/glut.h>
 	<stdio.h>
 	<vector>
@@ -273,7 +274,7 @@
 1609506735 /home/victorkich/Documents/CG Zero bala/CarRacer/src/Score.h
 	"gl_canvas2d.h"
 
-1609508807 /home/victorkich/Documents/CG Zero bala/CarRacer/src/Bonus.cpp
+1609779420 /home/victorkich/Documents/CG Zero bala/CarRacer/src/Bonus.cpp
 	<vector>
 	"gl_canvas2d.h"
 	"Gold.h"
@@ -318,4 +319,23 @@
 	<math.h>
 	"matrix.h"
 	"Perceptron.cpp"
+
+1609779041 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/Gun.cpp
+	<GL/glut.h>
+	<vector>
+	"gl_canvas2d.h"
+	"Vector2.h"
+	"Bullet.h"
+
+1609778973 /home/victorkich/Documents/CG Zero bala/CarRacer/src/Bullet.h
+	"gl_canvas2d.h"
+	"Vector2.h"
+	"math.h"
+
+1609779433 /home/victorkich/Documents/CG Zero bala/CarRacer/src/Gun.cpp
+	<GL/glut.h>
+	<vector>
+	"gl_canvas2d.h"
+	"Vector2.h"
+	"Bullet.h"
 

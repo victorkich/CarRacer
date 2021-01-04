@@ -18,6 +18,7 @@
 #include "Bonus.cpp"
 #include "Botao.h"
 #include "NN.cpp"
+#include "Gun.cpp"
 
 
 //variaveis globais para selecao do que sera exibido na canvas.
@@ -30,6 +31,7 @@ Bonus *bonus = nullptr;
 Botao *h_transpose = nullptr, *v_transpose = nullptr, *more_scale = nullptr, *less_scale = nullptr;
 Botao *spin_left = nullptr, *spin_right = nullptr, *more_thickness = nullptr, *less_thickness = nullptr;
 NN *nn = nullptr;
+Gun *gun = nullptr;
 
 std::vector <Point> g_points;
 std::vector<bool> g_actions(4, false), g_actions_ia(4, false);
@@ -90,9 +92,12 @@ void render() {
             car_ia = new Car(20, 40, 2, g_points);
             first_car_angle = false;
         }
-        car_ia->updatePoints(g_points);
+
         car->updatePoints(g_points);
+        gun->Render(car->get_carx(), car->get_cary(), fps->get_fps());
+        car_ia->updatePoints(g_points);
         car->step(g_actions, fps->get_fps());
+
         g_obs = car->Render(cb_ls->getStatus());
         ia_obs = car_ia->Render(cb_ls->getStatus());
 
@@ -133,6 +138,8 @@ void render() {
 void keyboard(int key) {
     //printf("\nTecla: %d" , key);
 
+    if (key == 32)
+        gun->new_bullet(car->get_carx(), car->get_cary(), car->get_angle()); // fire
     if (key == 201)
         g_actions[0] = true; // forward
     if (key == 203)
@@ -285,7 +292,7 @@ int main() {
     spin_right = new Botao(1130, 200, 70, 40, "+Spin");
     less_thickness = new Botao(1050, 150, 70, 40, "-Thick");
     more_thickness = new Botao(1130, 150, 70, 40, "+Thick");
-
+    gun = new Gun();
 
     nn = new NN(0.0001);
 

@@ -68,7 +68,6 @@ public:
 
     void updatePoints(std::vector <Point> g_points) {
         points = g_points;
-
         float car_x = get_carx(), car_y = get_cary();
         CV::translate(car_x - centre_width, car_y - centre_height);
         glReadPixels(car_x, car_y, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, &pixel);
@@ -140,6 +139,10 @@ public:
 
     int get_score() {
         return score;
+    }
+
+    float get_angle(){
+        return angle;
     }
 
     QSMatrix<float> Render(bool show_lasers) {

@@ -82,7 +82,7 @@ public:
             if (scaled) {
                 max_x = -10000;
                 max_y = -10000;
-                for (int i = 0; i < g_points.size(); i++) {
+                for (unsigned i = 0; i < g_points.size(); i++) {
                     if (g_points[i].p.x > max_x)
                         max_x = g_points[i].p.x;
                     if (g_points[i].p.y > max_y)
@@ -90,7 +90,7 @@ public:
                 }
                 float back_x = (max_x * scale - max_x) / 1.5;
                 float back_y = (max_y * scale - max_y) / 1.5;
-                for (int i = 0; i < g_points.size(); i++) {
+                for (unsigned i = 0; i < g_points.size(); i++) {
                     g_points[i].p.x = g_points[i].p.x * scale - back_x;
                     g_points[i].p.y = g_points[i].p.y * scale - back_y;
                 }
@@ -99,32 +99,32 @@ public:
             if (vt) {
                 max_y = -10000;
                 min_y = 10000;
-                for (int i = 0; i < g_points.size(); i++) {
+                for (unsigned i = 0; i < g_points.size(); i++) {
                     if (g_points[i].p.y > max_y)
                         max_y = g_points[i].p.y;
                     if (g_points[i].p.y < min_y)
                         min_y = g_points[i].p.y;
                 }
-                for (int i = 0; i < g_points.size(); i++)
+                for (unsigned i = 0; i < g_points.size(); i++)
                     g_points[i].p.y = abs(max_y - g_points[i].p.y) + min_y;
             }
 
             if (ht) {
                 max_x = -10000;
                 min_x = 10000;
-                for (int i = 0; i < g_points.size(); i++) {
+                for (unsigned i = 0; i < g_points.size(); i++) {
                     if (g_points[i].p.x > max_x)
                         max_x = g_points[i].p.x;
                     if (g_points[i].p.x < min_x)
                         min_x = g_points[i].p.x;
                 }
-                for (int i = 0; i < g_points.size(); i++)
+                for (unsigned i = 0; i < g_points.size(); i++)
                     g_points[i].p.x = abs(max_x - g_points[i].p.x) + min_x;
             }
 
             if (rotated) {
                 float old_x, old_y, new_x, new_y;
-                for (int i = 0; i < g_points.size(); i++) {
+                for (unsigned i = 0; i < g_points.size(); i++) {
                     old_x = g_points[i].p.x - centre_width;
                     old_y = g_points[i].p.y - centre_height;
                     new_y = -old_x * sin(angle) + old_y * cos(angle);
@@ -135,7 +135,7 @@ public:
                     g_points[i].p.y = new_y;
                 }
             }
-            return g_points;
         }
+        return g_points;
     }
 };
