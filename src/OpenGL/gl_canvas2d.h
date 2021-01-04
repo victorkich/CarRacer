@@ -9,7 +9,7 @@
 #include <GL/glut.h>
 #include <GL/freeglut_ext.h> //callback da wheel do mouse.
 
-#include "Vector2.h"
+#include "../Utils/Vector2.h"
 
 #define PI_4 0.7853981634
 #define PI_2 6.28318530717

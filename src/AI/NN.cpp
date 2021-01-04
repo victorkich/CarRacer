@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <vector>
 #include <math.h>
-#include "matrix.h"
+#include "../Utils/matrix.h"
 #include "Perceptron.cpp"
 
 

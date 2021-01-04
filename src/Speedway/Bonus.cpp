@@ -1,5 +1,5 @@
 #include <vector>
-#include "gl_canvas2d.h"
+#include "../OpenGL/gl_canvas2d.h"
 #include "Gold.h"
 
 

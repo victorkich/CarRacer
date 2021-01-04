@@ -4,6 +4,7 @@
 #include <math.h>
 #include <stdio.h>
 
+
 class Vector2 {
 public:
     float x, y;

@@ -1,7 +1,7 @@
 #ifndef __BOTAO_H__
 #define __BOTAO_H__
 
-#include "gl_canvas2d.h"
+#include "../OpenGL/gl_canvas2d.h"
 
 class Botao {
     float altura, largura, x, y;

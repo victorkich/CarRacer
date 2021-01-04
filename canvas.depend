@@ -258,7 +258,7 @@
 	"Point.h"
 	"matrix.h"
 
-1609779237 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/Road.cpp
+1609779481 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/Road.cpp
 	<GL/glut.h>
 	<stdio.h>
 	<vector>
@@ -281,7 +281,7 @@
 
 1609507327 /home/victorkich/Documents/CG Zero bala/CarRacer/src/Gold.h
 
-1609508807 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/Bonus.cpp
+1609779420 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/Bonus.cpp
 	<vector>
 	"gl_canvas2d.h"
 	"Gold.h"
@@ -338,4 +338,97 @@
 	"gl_canvas2d.h"
 	"Vector2.h"
 	"Bullet.h"
+
+1609784034 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/Utils/matrix.cpp
+	"matrix.h"
+
+1609598361 /home/victorkich/Documents/CG Zero bala/CarRacer/src/Utils/matrix.h
+	<vector>
+	"matrix.cpp"
+
+1609784034 /home/victorkich/Documents/CG Zero bala/CarRacer/src/Utils/matrix.cpp
+	"matrix.h"
+
+1609783719 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/AI/NN.cpp
+	<stdio.h>
+	<stdlib.h>
+	<vector>
+	<math.h>
+	"../Utils/matrix.h"
+	"Perceptron.cpp"
+
+1609783733 /home/victorkich/Documents/CG Zero bala/CarRacer/src/AI/Perceptron.cpp
+	<stdio.h>
+	<stdlib.h>
+	<vector>
+	<math.h>
+	"../Utils/matrix.h"
+
+1609783733 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/AI/Perceptron.cpp
+	<stdio.h>
+	<stdlib.h>
+	<vector>
+	<math.h>
+	"../Utils/matrix.h"
+
+1609251160 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/OpenGL/gl_canvas2d.cpp
+	"gl_canvas2d.h"
+	<GL/glut.h>
+
+1609783772 /home/victorkich/Documents/CG Zero bala/CarRacer/src/OpenGL/gl_canvas2d.h
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+	"../Utils/Vector2.h"
+
+1609784051 /home/victorkich/Documents/CG Zero bala/CarRacer/src/Utils/Vector2.h
+	<math.h>
+	<stdio.h>
+
+1609783871 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/Runner/Car.cpp
+	<GL/glut.h>
+	<vector>
+	<stdio.h>
+	<math.h>
+	"../Utils/Vector2.h"
+	"../OpenGL/gl_canvas2d.h"
+	"../Utils/Point.h"
+	"../Utils/matrix.h"
+
+1609784046 /home/victorkich/Documents/CG Zero bala/CarRacer/src/Utils/Point.h
+	"../OpenGL/gl_canvas2d.h"
+	"Vector2.h"
+
+1609783827 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/Runner/Shot/Gun.cpp
+	<GL/glut.h>
+	<vector>
+	"../../OpenGL/gl_canvas2d.h"
+	"../../Utils/Vector2.h"
+	"Bullet.h"
+
+1609783800 /home/victorkich/Documents/CG Zero bala/CarRacer/src/Runner/Shot/Bullet.h
+	"../../OpenGL/gl_canvas2d.h"
+	"../../Utils/Vector2.h"
+	"math.h"
+
+1609783682 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/Speedway/Bonus.cpp
+	<vector>
+	"../OpenGL/gl_canvas2d.h"
+	"Gold.h"
+
+1609783960 /home/victorkich/Documents/CG Zero bala/CarRacer/src/Speedway/Gold.h
+	"../OpenGL/gl_canvas2d.h"
+
+1609784016 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/Speedway/Road.cpp
+	<GL/glut.h>
+	<stdio.h>
+	<vector>
+	<math.h>
+	"../Utils/Vector2.h"
+	"../OpenGL/gl_canvas2d.h"
+	"../Utils/Point.h"
+	"../Utils/matrix.h"
 

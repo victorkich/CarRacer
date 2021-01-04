@@ -1,8 +1,8 @@
 #ifndef __BULLET_H__
 #define __BULLET_H__
 
-#include "gl_canvas2d.h"
-#include "Vector2.h"
+#include "../../OpenGL/gl_canvas2d.h"
+#include "../../Utils/Vector2.h"
 #include "math.h"
 
 

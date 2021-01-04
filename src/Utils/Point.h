@@ -1,8 +1,9 @@
 #ifndef __POINT_H__
 #define __POINT_H__
 
-#include "gl_canvas2d.h"
+#include "../OpenGL/gl_canvas2d.h"
 #include "Vector2.h"
+
 
 class Point {
 private:

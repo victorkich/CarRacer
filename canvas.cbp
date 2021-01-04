@@ -39,29 +39,32 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Linker>
+		    <!--Add library="../lib/freeglut.lib" /-->
+		    <!--Add library="../lib/libglu32.a" /-->
+		    <!--Add library="../lib/libopengl32.a" /-->
 			<Add option="-lGL" />
 			<Add option="-lGLU" />
 			<Add option="-lglut" />
 		</Linker>
 		<Unit filename="include/GL/glut.h" />
-		<Unit filename="src/Botao.h" />
-		<Unit filename="src/Point.h" />
-		<Unit filename="src/Checkbox.h" />
-		<Unit filename="src/Vector2.h" />
-		<Unit filename="src/Car.cpp" />
-		<Unit filename="src/Road.cpp" />
-		<Unit filename="src/Score.h" />
-		<Unit filename="src/Bullet.h" />
-		<Unit filename="src/NN.cpp" />
-		<Unit filename="src/Fps.h" />
-		<Unit filename="src/Gold.h" />
-		<Unit filename="src/Bonus.cpp" />
-		<Unit filename="src/Gun.cpp" />
-		<Unit filename="src/Perceptron.cpp" />
-		<Unit filename="src/matrix.h" />
-		<Unit filename="src/matrix.cpp" />
-		<Unit filename="src/gl_canvas2d.cpp" />
-		<Unit filename="src/gl_canvas2d.h" />
+		<Unit filename="src/AI/NN.cpp" />
+        <Unit filename="src/AI/Perceptron.cpp" />
+		<Unit filename="src/Interface/Botao.h" />
+		<Unit filename="src/Interface/Checkbox.h" />
+		<Unit filename="src/Interface/Fps.h" />
+        <Unit filename="src/OpenGL/gl_canvas2d.cpp" />
+        <Unit filename="src/OpenGL/gl_canvas2d.h" />
+        <Unit filename="src/Runner/Shot/Bullet.h" />
+        <Unit filename="src/Runner/Shot/Gun.cpp" />
+        <Unit filename="src/Runner/Car.cpp" />
+        <Unit filename="src/Runner/Score.h" />
+        <Unit filename="src/Speedway/Bonus.cpp" />
+        <Unit filename="src/Speedway/Gold.h" />
+        <Unit filename="src/Speedway/Road.cpp" />
+        <Unit filename="src/Utils/matrix.cpp" />
+        <Unit filename="src/Utils/matrix.h" />
+		<Unit filename="src/Utils/Point.h" />
+		<Unit filename="src/Utils/Vector2.h" />
 		<Unit filename="src/main.cpp" />
 		<Extensions>
 			<code_completion />

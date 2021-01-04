@@ -3,10 +3,10 @@
 #include <vector>
 #include <math.h>
 
-#include "Vector2.h"
-#include "gl_canvas2d.h"
-#include "Point.h"
-#include "matrix.h"
+#include "../Utils/Vector2.h"
+#include "../OpenGL/gl_canvas2d.h"
+#include "../Utils/Point.h"
+#include "../Utils/matrix.h"
 
 class Road {
 private:

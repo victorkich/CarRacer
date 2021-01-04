@@ -1,6 +1,9 @@
 #ifndef GOLD_H
 #define GOLD_H
 
+#include "../OpenGL/gl_canvas2d.h"
+
+
 class Gold {
 public:
     float x, y;

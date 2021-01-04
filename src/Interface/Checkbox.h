@@ -1,7 +1,7 @@
 #ifndef __CHECKBOX_H__
 #define __CHECKBOX_H__
 
-#include "gl_canvas2d.h"
+#include "../OpenGL/gl_canvas2d.h"
 
 //Classe de criacao da caixa de checagem
 class Checkbox {

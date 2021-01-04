@@ -1,8 +1,8 @@
 #include <GL/glut.h>
 #include <vector>
 
-#include "gl_canvas2d.h"
-#include "Vector2.h"
+#include "../../OpenGL/gl_canvas2d.h"
+#include "../../Utils/Vector2.h"
 #include "Bullet.h"
 
 class Gun {

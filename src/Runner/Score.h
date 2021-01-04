@@ -1,7 +1,7 @@
 #ifndef __SCORE_H__
 #define __SCORE_H__
 
-#include "gl_canvas2d.h"
+#include "../OpenGL/gl_canvas2d.h"
 
 class Score {
     float x, y, altura, largura;
