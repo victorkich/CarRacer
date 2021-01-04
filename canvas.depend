@@ -402,7 +402,7 @@
 	"../OpenGL/gl_canvas2d.h"
 	"Vector2.h"
 
-1609783827 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/Runner/Shot/Gun.cpp
+1609784400 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/Runner/Shot/Gun.cpp
 	<GL/glut.h>
 	<vector>
 	"../../OpenGL/gl_canvas2d.h"
@@ -422,7 +422,7 @@
 1609783960 /home/victorkich/Documents/CG Zero bala/CarRacer/src/Speedway/Gold.h
 	"../OpenGL/gl_canvas2d.h"
 
-1609784016 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/Speedway/Road.cpp
+1609784390 source:/home/victorkich/Documents/CG Zero bala/CarRacer/src/Speedway/Road.cpp
 	<GL/glut.h>
 	<stdio.h>
 	<vector>

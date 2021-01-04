@@ -5,6 +5,7 @@
 #include "../../Utils/Vector2.h"
 #include "Bullet.h"
 
+
 class Gun {
 private:
     std::vector <Bullet> bullets;

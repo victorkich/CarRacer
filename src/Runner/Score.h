@@ -3,6 +3,7 @@
 
 #include "../OpenGL/gl_canvas2d.h"
 
+
 class Score {
     float x, y, altura, largura;
     char player[100];

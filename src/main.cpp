@@ -6,19 +6,19 @@
 #include <vector>
 #include <ctime>
 
-#include "Point.h"
-#include "gl_canvas2d.h"
-#include "Vector2.h"
-#include "Checkbox.h"
-#include "matrix.h"
-#include "Car.cpp"
-#include "Road.cpp"
-#include "Fps.h"
-#include "Score.h"
-#include "Bonus.cpp"
-#include "Botao.h"
-#include "NN.cpp"
-#include "Gun.cpp"
+#include "Utils/Point.h"
+#include "OpenGL/gl_canvas2d.h"
+#include "Utils/Vector2.h"
+#include "Interface/Checkbox.h"
+#include "Utils/matrix.h"
+#include "Runner/Car.cpp"
+#include "Speedway/Road.cpp"
+#include "Interface/Fps.h"
+#include "Runner/Score.h"
+#include "Speedway/Bonus.cpp"
+#include "Interface/Botao.h"
+#include "AI/NN.cpp"
+#include "Runner/Shot/Gun.cpp"
 
 
 //variaveis globais para selecao do que sera exibido na canvas.
@@ -88,8 +88,8 @@ void render() {
 
     if (g_finish) {
         if (first_car_angle) {
-            car = new Car(20, 40, 2, g_points);  // width, height, filter quality(1-10), points
-            car_ia = new Car(20, 40, 2, g_points);
+            car = new Car(20, 40, 2, g_points, 0.5, 0.5, 0);  // width, height, filter quality(1-10), points
+            car_ia = new Car(20, 40, 2, g_points, 0.5, 0, 0.5);
             first_car_angle = false;
         }
 

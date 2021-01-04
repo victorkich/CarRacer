@@ -11,7 +11,7 @@
 
 class Car {
 private:
-    float centre_width, centre_height, angle, width, height, quality;
+    float centre_width, centre_height, angle, width, height, quality, r, g, b;
     float addx = 0., addy = 0., position = 0., speed = 0.;
     int lap = 0, score = 0;
     struct pix {
@@ -23,7 +23,10 @@ private:
     std::vector<float> obs;
 
 public:
-    Car(float w, float h, float filter_quality, std::vector <Point> g_points) {
+    Car(float w, float h, float filter_quality, std::vector <Point> g_points, float _r, float _g, float _b) {
+        r = _r;
+        g = _g;
+        b = _b;
         width = w;
         height = h;
         centre_width = w / 2;
@@ -148,7 +151,7 @@ public:
     QSMatrix<float> Render(bool show_lasers) {
         float car_x = get_carx(), car_y = get_cary();
         CV::translate(car_x - centre_width, car_y - centre_height);
-        CV::color(0, 0, 1);
+        CV::color(r, g, b);
         float old_x, old_y, new_x, new_y;
         for (float y = 0; y < height; y += 0.7)
             for (float x = 0; x < width; x += 0.7) {
