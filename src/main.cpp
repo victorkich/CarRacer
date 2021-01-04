@@ -38,6 +38,7 @@ std::vector<bool> progress;
 
 int g_npoints = 0;
 bool g_finish = false, first_car_angle = true, point_local = true;
+bool rotated = false, v_transposed = false, h_transposed = false, scaled = false;
 int screenWidth = 1280, screenHeight = 720; //largura e altura inicial da tela . Alteram com o redimensionamento de tela.
 int mouseX, mouseY, mov_mouseX, mov_mouseY, dif_x, dif_y; //variaveis globais do mouse para poder exibir dentro da render().
 clock_t timer;
@@ -68,7 +69,15 @@ void render() {
     // Road render
     CV::translate(0, 0);
     road->updatePoints(g_points, g_npoints);
-    road->Render(float(mouseX), float(mouseY), g_finish);
+    g_points = road->Render(float(mouseX), float(mouseY), g_finish, g_points, rotated, v_transposed, h_transposed, scaled);
+    if (rotated)
+        rotated = false;
+    if (v_transposed)
+        v_transposed = false;
+    if (h_transposed)
+        h_transposed = false;
+    if (scaled)
+        scaled = false;
 
     CV::translate(0, 0);
     if (g_npoints && cb_cp->getStatus())
@@ -97,11 +106,11 @@ void render() {
         reward_ia = bonus->getReward(car_ia->get_carx(), car_ia->get_cary(), false);
         car_ia->addReward(reward_ia);
 
-        if (lap < car->get_lap()){
+        if (lap < car->get_lap()) {
             bonus->reset(true);
             lap = car->get_lap();
         }
-        if (lap_ia < car_ia->get_lap()){
+        if (lap_ia < car_ia->get_lap()) {
             bonus->reset(false);
             lap_ia = car_ia->get_lap();
         }
@@ -163,31 +172,35 @@ void mouse(int button, int state, int wheel, int direction, int x, int y) {
                 cb_ls->updateStatus();
             else if (cb_train->Colidiu(x, y))
                 cb_train->updateStatus();
-            else if (h_transpose->Colidiu(x, y))
+            else if (h_transpose->Colidiu(x, y)) {
                 h_transpose->updateStatus();
-            else if (v_transpose->Colidiu(x, y))
+                h_transposed = true;
+            } else if (v_transpose->Colidiu(x, y)) {
                 v_transpose->updateStatus();
-            else if (more_scale->Colidiu(x, y))
+                v_transposed = true;
+            } else if (more_scale->Colidiu(x, y)){
                 more_scale->updateStatus();
-            else if (less_scale->Colidiu(x, y))
+                road->add_scale(1.1);
+                scaled = true;
+            } else if (less_scale->Colidiu(x, y)){
                 less_scale->updateStatus();
-            else if (spin_left->Colidiu(x, y)){
+                road->add_scale(0.9);
+                scaled = true;
+            } else if (spin_left->Colidiu(x, y)) {
                 spin_left->updateStatus();
-                road->add_angle(-10);
-            }
-            else if (more_thickness->Colidiu(x, y)){
+                road->add_angle(0.01745329 * 179);
+                rotated = true;
+            } else if (spin_right->Colidiu(x, y)) {
+                spin_right->updateStatus();
+                road->add_angle(0.01745329 * 181);
+                rotated = true;
+            } else if (more_thickness->Colidiu(x, y)) {
                 more_thickness->updateStatus();
                 road->add_len(1);
-            }
-            else if (less_thickness->Colidiu(x, y)){
+            } else if (less_thickness->Colidiu(x, y)) {
                 less_thickness->updateStatus();
                 road->add_len(-1);
-            }
-            else if (spin_right->Colidiu(x, y)){
-                spin_right->updateStatus();
-                road->add_angle(10);
-            }
-            else if (bonus->Colidiu(x, y)) {
+            } else if (bonus->Colidiu(x, y)) {
                 mov_mouseX = mouseX;
                 mov_mouseY = mouseY;
             } else {

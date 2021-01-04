@@ -82,10 +82,10 @@ public:
         }
         position = (float(pixel.red) / 255) * 100;
         updateProgress();
-        CV::color(0, 0, 1);
-        char str[16];
-        sprintf(str, "%d", int(position));
-        CV::text(30, 30, str);
+        //CV::color(0, 0, 1);
+        //char str[16];
+        //sprintf(str, "%d", int(position));
+        //CV::text(30, 30, str);
     }
 
     int get_speed() {
